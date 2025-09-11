@@ -5,7 +5,8 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 
 @Data
@@ -18,4 +19,11 @@ public class Cliente {
     @NotNull(message = "CPF obrigatório")
     @Size(max = 11, message = "O númer do CPF deve conter 11 dígitos")
     private Long CPF;
+
+    @OneToMany(mappedBy = "cliente") // criação da lista de conta
+    private List<Conta> contas;
+
+    @Id
+    @GeneratedValue (strategy = GenerationType.UUID)
+    private String id;
 }
