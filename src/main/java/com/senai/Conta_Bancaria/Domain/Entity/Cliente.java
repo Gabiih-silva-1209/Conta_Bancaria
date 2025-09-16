@@ -1,4 +1,4 @@
-package Domain.Entity;
+package com.senai.Conta_Bancaria.Domain.Entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -8,9 +8,11 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 
-import javax.persistence.Entity;
+
 import java.util.List;
 
 
@@ -19,7 +21,7 @@ import java.util.List;
 @AllArgsConstructor // Todos os construtores
 @NoArgsConstructor // Construtor vazio
 @Builder // Consigo construir um objeto de acordo com paramêtros selecionados
-@Table(name = "Cliente",
+@Table(name = "cliente",
         uniqueConstraints = {
         @UniqueConstraint( columnNames = "CPF") } )  //Construção de tabelas com alteração de novo
 

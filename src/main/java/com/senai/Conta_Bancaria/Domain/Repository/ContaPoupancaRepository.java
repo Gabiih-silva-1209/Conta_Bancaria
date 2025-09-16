@@ -1,6 +1,6 @@
-package Domain.Repository;
+package com.senai.Conta_Bancaria.Domain.Repository;
 
-import Domain.Entity.ContaPoupanca;
+import com.senai.Conta_Bancaria.Domain.Entity.ContaPoupanca;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

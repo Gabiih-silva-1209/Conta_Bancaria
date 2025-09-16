@@ -1,4 +1,4 @@
-package Domain.Entity;
+package com.senai.Conta_Bancaria.Domain.Entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -6,6 +6,8 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.math.BigDecimal;
 
@@ -15,8 +17,13 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
+@DiscriminatorValue("CORRENTE")
+
 public class ContaCorrente extends Conta {
+
+    @Column(precision = 4) // quantidade de dígitos
     private BigDecimal limite;
 
+    @Column(precision = 5)
     private BigDecimal taxa;
 }

@@ -1,0 +1,25 @@
+package com.senai.Conta_Bancaria.Domain.Entity;
+
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
+
+import javax.persistence.Column;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
+import java.math.BigDecimal;
+
+@Data
+@Entity
+@EqualsAndHashCode(callSuper = true)
+@SuperBuilder
+@NoArgsConstructor
+@DiscriminatorValue("POUPANCA")
+public class ContaPoupanca extends Conta {
+
+    @Column(precision = 5)
+    private BigDecimal rendimento;
+
+}

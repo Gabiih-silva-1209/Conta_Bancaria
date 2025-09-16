@@ -1,6 +1,6 @@
-package Domain.Repository;
+package com.senai.Conta_Bancaria.Domain.Repository;
 
-import Domain.Entity.ContaCorrente;
+import com.senai.Conta_Bancaria.Domain.Entity.ContaCorrente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
