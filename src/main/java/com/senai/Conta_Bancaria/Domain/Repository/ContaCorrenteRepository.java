@@ -1,4 +1,4 @@
-package com.senai.Conta_Bancaria.Domain.Repository;
+package com.senai.Conta_Bancaria.domain.repository;
 
 import com.senai.Conta_Bancaria.Domain.Entity.ContaCorrente;
 import org.springframework.data.jpa.repository.JpaRepository;

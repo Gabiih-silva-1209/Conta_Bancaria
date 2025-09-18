@@ -6,4 +6,8 @@ public record ContaResumoDTO(String numeroDaConta,
                              String Tipo,
                              BigDecimal Saldo) {
 
+public Conta toEntity (CLiente cliente){
+
+    }
+
 }
