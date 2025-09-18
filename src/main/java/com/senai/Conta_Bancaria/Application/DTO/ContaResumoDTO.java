@@ -7,7 +7,22 @@ public record ContaResumoDTO(String numeroDaConta,
                              BigDecimal Saldo) {
 
 public Conta toEntity (CLiente cliente){
+if("CORRENTE".equalsIgnoreCase(tipo)){
+    return ContaCorrente.builder()
+            .cliente(cliente)
+            .numeroDaConta(numeroDaConta)
+            .saldo(saldo)
+            .ativa(true)
+            .build();
+} else if ("POUPANÇA".equalsIgnoreCase(tipo)) {
+    return ContaPoupanca.builder()
+            .cliente(cliente)
+            .numeroDaConta(numeroDaConta)
+            .saldo(saldo)
+            .ativa(true)
+            .build();
 
-    }
+}
+}
 
 }

@@ -27,4 +27,6 @@ public class ClienteService {
                 .anyMatch(Conta c -> c.getClass().equals(dto.conta().getClass()) && c.isAtiva);
 return
     }
+
+
 }
