@@ -32,7 +32,7 @@ public record ContaResumoDTO(String numeroDaConta,
         return null;
     }
 
-    public static Object fromEntity(Conta conta) {
+    public static ContaResumoDTO fromEntity(Conta conta) {
         return new ContaResumoDTO(
                 conta.getNumeroDaConta(),
                 conta.getTipo(),

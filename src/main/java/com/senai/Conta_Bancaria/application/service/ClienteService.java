@@ -6,6 +6,8 @@ import com.senai.Conta_Bancaria.domain.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
@@ -16,7 +18,7 @@ public class ClienteService {
 
     public ClienteResponseDTO registrarCliente(ClienteRegistroDTO dto){
 
-        var cliente = repository.findByCPFandAtivoTrue(dto.CPF()).orElseGet(
+        var cliente = repository.findByCpfAndAtivoTrue(dto.cpf()).orElseGet(
                 () -> repository.save(dto.toEntity())
         );
         var contas = cliente.getContas();
@@ -30,5 +32,11 @@ public class ClienteService {
                 cliente.getContas().add(novaConta);
 
                 return ClienteResponseDTO.fromEntity(repository.save(cliente));
+
+                public List<ClienteResponseDTO>listarClientesAtivos(){
+                    return repository.findByCpfAndAtivoTrue().stream()
+                            .map(ClienteResponseDTO::fromEntity)
+                            .toList();
+        }
     }
 }

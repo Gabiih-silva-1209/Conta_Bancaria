@@ -23,18 +23,18 @@ import java.util.List;
 @Builder // Consigo construir um objeto de acordo com paramêtros selecionados
 @Table(name = "cliente",
         uniqueConstraints = {
-        @UniqueConstraint( columnNames = "CPF") } )  //Construção de tabelas com alteração de novo
+        @UniqueConstraint( columnNames = "cpf") } )  //Construção de tabelas com alteração de novo
 
 public class Cliente {
     @NotBlank(message = "O nome do cliente não pode estar vazio")
     @Size(min=3, max = 120, message = "O nome deve ter entre 3 à 100 caracteres")
     @Column(nullable = false, length = 120)
-    private String Nome;
+    private String nome;
 
     @NotNull(message = "CPF obrigatório")
     @Size(max = 11, message = "O número do CPF deve conter 11 dígitos")
     @Column(nullable = false, length = 11)
-    private String CPF;
+    private String cpf;
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)  // Relação no banco de dados de um para muitos - 1 cliente N: contas (um cliente pode ter muitas contas)
     private List<Conta> contas; // criação da lista de conta
