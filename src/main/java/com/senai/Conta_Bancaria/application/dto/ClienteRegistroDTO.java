@@ -1,6 +1,8 @@
 package com.senai.Conta_Bancaria.application.dto;
 
-import com.senai.Conta_Bancaria.Domain.Entity.Cliente;
+import com.senai.Conta_Bancaria.domain.entity.Cliente;
+import com.senai.Conta_Bancaria.domain.entity.Conta;
+
 import java.util.ArrayList;
 
 public record ClienteRegistroDTO(String Nome,

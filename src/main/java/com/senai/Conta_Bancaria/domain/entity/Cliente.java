@@ -1,4 +1,4 @@
-package com.senai.Conta_Bancaria.Domain.Entity;
+package com.senai.Conta_Bancaria.domain.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
