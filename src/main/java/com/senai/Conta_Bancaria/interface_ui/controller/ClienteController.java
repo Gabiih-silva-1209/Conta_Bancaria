@@ -17,7 +17,7 @@ public class ClienteController {
     private final ClienteService service;
 
     @PostMapping
-    public ClienteResponseDTO registrarCliente(@RequestBody ClienteRegistroDTO dto){
+    public ClienteResponseDTO registrarCliente(@RequestBody ClienteResponseDTO dto){
 return service.registrarCliente(dto);
     }
 }

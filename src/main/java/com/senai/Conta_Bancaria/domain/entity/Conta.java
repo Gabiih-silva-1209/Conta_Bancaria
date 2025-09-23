@@ -47,4 +47,5 @@ public abstract class Conta {
     @Column(nullable = false)
     private boolean ativa;
 
+    public abstract String getTipo();
 }
