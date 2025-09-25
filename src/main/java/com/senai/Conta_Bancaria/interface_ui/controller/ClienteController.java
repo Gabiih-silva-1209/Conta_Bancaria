@@ -24,7 +24,7 @@ public class ClienteController {
     public ResponseEntity<ClienteResponseDTO> registrarCliente(@RequestBody ClienteRegistroDTO dto) {
         ClienteResponseDTO novoCliente = service.registrarCliente(dto);
 
-        return ResponseEntity.created(URI.create("/api/cliente/cpf/" + novoCliente.CPF())).body(novoCliente);
+        return ResponseEntity.created(URI.create("/api/cliente/cpf/" + novoCliente.cpf())).body(novoCliente);
     }
 
     @GetMapping("/cpf{cpf}")
@@ -37,5 +37,11 @@ public class ClienteController {
                 @RequestBody ClienteAtualizadoDTO dto) {
             ClienteResponseDTO clienteAtualizado = service.atualizarCliente(cpf, dto);
             return ResponseEntity.ok(service.atualizarCliente(cpf, dto));
+
+        }
+        @DeleteMapping("/cpf")
+    public ResponseEntity<Void> deletarCliente(@PathVariable String cpf){
+        service.deletarCliente(cpf);
+        return ResponseEntity.noContent().build();
         }
     }

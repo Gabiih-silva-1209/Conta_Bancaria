@@ -7,24 +7,24 @@ import com.senai.Conta_Bancaria.domain.entity.ContaPoupanca;
 
 import java.math.BigDecimal;
 
-public record ContaResumoDTO(String numeroDaConta,
-                             String Tipo,
-                             BigDecimal Saldo
+public record ContaResumoDTO(String numero,
+                             String tipo,
+                             BigDecimal saldo
 ) {
 
     public Conta toEntity(Cliente cliente) {
-        if ("CORRENTE".equalsIgnoreCase(Tipo)) {
+        if ("CORRENTE".equalsIgnoreCase(tipo)) {
             return ContaCorrente.builder()
                     .cliente(cliente)
-                    .numeroDaConta(this.numeroDaConta)
-                    .saldo(this.Saldo)
+                    .numeroDaConta(this.numero)
+                    .saldo(this.saldo)
                     .ativa(true)
                     .build();
-        } else if ("POUPANÇA".equalsIgnoreCase(Tipo)) {
+        } else if ("POUPANÇA".equalsIgnoreCase(tipo)) {
             return ContaPoupanca.builder()
                     .cliente(cliente)
-                    .numeroDaConta(this.numeroDaConta)
-                    .saldo(this.Saldo)
+                    .numeroDaConta(this.numero)
+                    .saldo(this.saldo)
                     .ativa(true)
                     .build();
 

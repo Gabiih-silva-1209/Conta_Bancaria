@@ -6,8 +6,8 @@ import java.util.List;
 
 public record ClienteResponseDTO(
         String id,
-        String Nome,
-        String CPF,
+        String nome,
+        String cpf,
         List<ContaResumoDTO> contas
 ){
         public static ClienteResponseDTO fromEntity(Cliente cliente) {
