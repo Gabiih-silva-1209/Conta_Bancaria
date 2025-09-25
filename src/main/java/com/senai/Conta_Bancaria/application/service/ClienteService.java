@@ -1,5 +1,6 @@
 package com.senai.Conta_Bancaria.application.service;
 
+import com.senai.Conta_Bancaria.application.dto.ClienteAtualizadoDTO;
 import com.senai.Conta_Bancaria.application.dto.ClienteRegistroDTO;
 import com.senai.Conta_Bancaria.application.dto.ClienteResponseDTO;
 import com.senai.Conta_Bancaria.domain.repository.ClienteRepository;
@@ -29,14 +30,34 @@ public class ClienteService {
                 );
                 if (jaTemTipo)
                     throw  new RuntimeException("Cliente já possui uma conta desse tipo");
-                cliente.getContas().add(novaConta);
+        cliente.getContas().add(novaConta);
 
-                return ClienteResponseDTO.fromEntity(repository.save(cliente));
-
-                public List<ClienteResponseDTO>listarClientesAtivos(){
-                    return repository.findByCpfAndAtivoTrue().stream()
-                            .map(ClienteResponseDTO::fromEntity)
-                            .toList();
-        }
+        return ClienteResponseDTO.fromEntity(repository.save(cliente));
     }
+
+    public List<ClienteResponseDTO> listarClientesAtivos() {
+        return repository.findAllByAtivoTrue().stream()
+                .map(ClienteResponseDTO::fromEntity)
+                .toList();
+    }
+
+    public ClienteResponseDTO buscarClienteAtivoPorCpf(String cpf) {
+        var cliente = repository.findByCpfAndAtivoTrue(cpf).orElseThrow(
+                () -> new RuntimeException("Cliente não encontrado.")
+        );
+        return ClienteResponseDTO.fromEntity(cliente);
+    }
+
+    public ClienteResponseDTO atualizarCliente(String cpf, ClienteAtualizadoDTO dto) {
+var cliente = repository.findByCpfAndAtivoTrue(cpf).orElseThrow(
+        () -> new RuntimeException("Cliente não encontrado")
+);
+
+ cliente.setNome(dto.nome());
+ cliente.setCpf(dto.cpf());
+
+ return ClienteResponseDTO.fromEntity(repository.save(cliente));
+    }
+
+
 }
