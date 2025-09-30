@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.List;
 
 import static org.springframework.data.projection.EntityProjection.ProjectionType.DTO;
 
@@ -24,7 +25,12 @@ public class ClienteController {
     public ResponseEntity<ClienteResponseDTO> registrarCliente(@RequestBody ClienteRegistroDTO dto) {
         ClienteResponseDTO novoCliente = service.registrarCliente(dto);
 
-        return ResponseEntity.created(URI.create("/api/cliente/cpf/" + novoCliente.cpf())).body(novoCliente);
+        return ResponseEntity.created(URI.create("/api/cliente/cpf/" +novoCliente.cpf())).body(novoCliente);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ClienteResponseDTO>> listarClientesAtivos(){
+        return ResponseEntity.ok(service.listarClientesAtivos());
     }
 
     @GetMapping("/cpf{cpf}")
@@ -35,7 +41,6 @@ public class ClienteController {
         @PutMapping("/{cpf}")
         public ResponseEntity<ClienteResponseDTO> atualizarCliente(@PathVariable String cpf,
                 @RequestBody ClienteAtualizadoDTO dto) {
-            ClienteResponseDTO clienteAtualizado = service.atualizarCliente(cpf, dto);
             return ResponseEntity.ok(service.atualizarCliente(cpf, dto));
 
         }
