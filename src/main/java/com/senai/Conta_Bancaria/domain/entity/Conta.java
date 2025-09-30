@@ -34,7 +34,7 @@ public abstract class Conta {
     @NotNull(message = "Número de conta obrigatório")
     @Size(min = 8, max = 12, message = "O número da conta deve ter entre 8 a 12 dígitos")
     @Column(nullable = false, length = 20)
-    private String numeroDaConta;
+    private String numero;
 
     @Column(nullable = false, precision = 4)
     private BigDecimal saldo;

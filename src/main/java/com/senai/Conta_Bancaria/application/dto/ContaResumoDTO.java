@@ -16,14 +16,14 @@ public record ContaResumoDTO(String numero,
         if ("CORRENTE".equalsIgnoreCase(tipo)) {
             return ContaCorrente.builder()
                     .cliente(cliente)
-                    .numeroDaConta(this.numero)
+                    .numero(this.numero)
                     .saldo(this.saldo)
                     .ativa(true)
                     .build();
         } else if ("POUPANÇA".equalsIgnoreCase(tipo)) {
             return ContaPoupanca.builder()
                     .cliente(cliente)
-                    .numeroDaConta(this.numero)
+                    .numero(this.numero)
                     .saldo(this.saldo)
                     .ativa(true)
                     .build();
@@ -34,7 +34,7 @@ public record ContaResumoDTO(String numero,
 
     public static ContaResumoDTO fromEntity(Conta conta) {
         return new ContaResumoDTO(
-                conta.getNumeroDaConta(),
+                conta.getNumero(),
                 conta.getTipo(),
                 conta.getSaldo()
         );
