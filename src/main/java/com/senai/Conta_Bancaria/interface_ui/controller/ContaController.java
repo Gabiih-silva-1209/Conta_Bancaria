@@ -50,4 +50,8 @@ public class ContaController {
                                                     @RequestBody ValorSaqueDepositoDTO dto){
         return ResponseEntity.ok(service.depositar(numeroDaConta,dto));
         }
+
+        @PutMapping("/{numeroDaConta}/transferir")
+    public ResponseEntity<Void> transferir(@PathVariable String numeroDaConta,
+                                           @RequestParam String contaDestino,
     }

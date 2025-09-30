@@ -79,5 +79,13 @@ return ContaResumoDTO.fromEntity(repository.save(conta));
     private  Conta buscarContaAtivaPorNumero(String numero){
         return  repository.findByNumeroAndAtivaTrue(numero).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
 }
+public ContaResumoDTO transferir(String contaOrigem, String contaDestino, ValorSaqueDepositoDTO dto){
+    Conta origem = buscarContaAtivaPorNumero(contaOrigem);
+    Conta destino = buscarContaAtivaPorNumero(contaDestino);
 
+    origem.sacar(dto.valor());
+    destino.depositar(dto.valor());
+
+    repository.save(destino);
+    return ContaResumoDTO.fromEntity(repository.save(origem));
 }
