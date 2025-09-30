@@ -31,4 +31,16 @@ public class ContaCorrente extends Conta {
     public String getTipo() {
         return "CORRENTE";
     }
+
+    @Override
+    public void sacar(BigDecimal valor){
+        if (valor.compareTo(BigDecimal.ZERO)<0)
+            throw new IllegalArgumentException("Valor inválido para saque");
+        BigDecimal custoSaque = valor.multiply(taxa); //multiply é multiplicado
+        BigDecimal totalSaque = valor.add(custoSaque);
+        if(getSaldo().add(limite).compareTo(totalSaque)<0)
+            throw new IllegalArgumentException("Saldo insuficiente para saque");
+
+        setSaldo(getSaldo().subtract(totalSaque));
 }
+        }

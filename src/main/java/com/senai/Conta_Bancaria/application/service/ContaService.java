@@ -2,13 +2,17 @@ package com.senai.Conta_Bancaria.application.service;
 
 import com.senai.Conta_Bancaria.application.dto.ContaAtualizacaoDTO;
 import com.senai.Conta_Bancaria.application.dto.ContaResumoDTO;
+import com.senai.Conta_Bancaria.application.dto.ValorSaqueDepositoDTO;
 import com.senai.Conta_Bancaria.domain.entity.Conta;
 import com.senai.Conta_Bancaria.domain.entity.ContaCorrente;
 import com.senai.Conta_Bancaria.domain.entity.ContaPoupanca;
 import com.senai.Conta_Bancaria.domain.repository.ContaRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 @Service
@@ -55,5 +59,25 @@ return ContaResumoDTO.fromEntity(repository.save(conta));
         Conta conta = repository.findByNumeroAndAtivaTrue(numeroDaConta).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
         conta.setAtiva(false);
         repository.save(conta);
+
+        }
+
+    public ContaResumoDTO sacar(String numeroDaConta, ValorSaqueDepositoDTO dto) {
+        Conta conta = repository.findByNumeroAndAtivaTrue(numeroDaConta).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+
+        conta.sacar(dto.valor());
+        return ContaResumoDTO.fromEntity(repository.save(conta));
     }
+
+    public ContaResumoDTO depositar(String numeroDaConta, ValorSaqueDepositoDTO dto) {
+Conta conta = buscarContaAtivaPorNumero(numeroDaConta);
+
+
+conta.depositar(dto.valor());
+return ContaResumoDTO.fromEntity(repository.save(conta));
+    }
+    private  Conta buscarContaAtivaPorNumero(String numero){
+        return  repository.findByNumeroAndAtivaTrue(numero).orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+}
+
 }
