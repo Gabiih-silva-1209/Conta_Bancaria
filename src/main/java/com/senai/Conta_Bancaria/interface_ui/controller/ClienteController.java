@@ -13,10 +13,10 @@ import java.util.List;
 
 import static org.springframework.data.projection.EntityProjection.ProjectionType.DTO;
 
+
 @RestController
 @RequestMapping("/api/cliente")
-@RequiredArgsConstructor // criação de construtores
-
+@RequiredArgsConstructor
 public class ClienteController {
 
     private final ClienteService service;
@@ -25,7 +25,8 @@ public class ClienteController {
     public ResponseEntity<ClienteResponseDTO> registrarCliente(@RequestBody ClienteRegistroDTO dto) {
         ClienteResponseDTO novoCliente = service.registrarCliente(dto);
 
-        return ResponseEntity.created(URI.create("/api/cliente/cpf/" +novoCliente.cpf())).body(novoCliente);
+        return ResponseEntity.created(URI.create("/api/cliente/cpf/"+novoCliente.cpf())
+        ).body(novoCliente);
     }
 
     @GetMapping
@@ -33,20 +34,20 @@ public class ClienteController {
         return ResponseEntity.ok(service.listarClientesAtivos());
     }
 
-    @GetMapping("/cpf{cpf}")
-    public  ResponseEntity<ClienteResponseDTO> buscarClienteAtivoPorCpf(@PathVariable String cpf) {
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<ClienteResponseDTO> buscarClienteAtivoPorCpf(@PathVariable String cpf){
         return ResponseEntity.ok(service.buscarClienteAtivoPorCpf(cpf));
-
     }
-        @PutMapping("/{cpf}")
-        public ResponseEntity<ClienteResponseDTO> atualizarCliente(@PathVariable String cpf,
-                @RequestBody ClienteAtualizadoDTO dto) {
-            return ResponseEntity.ok(service.atualizarCliente(cpf, dto));
 
-        }
-        @DeleteMapping("/cpf")
-    public ResponseEntity<Void> deletarCliente(@PathVariable String cpf){
+    @PutMapping("/{cpf}")
+    public ResponseEntity<ClienteResponseDTO> atualizarCliente(@PathVariable String cpf,
+                                                               @RequestBody ClienteAtualizadoDTO dto) {
+        return ResponseEntity.ok(service.atualizarCliente(cpf, dto));
+    }
+
+    @DeleteMapping("/{cpf}")
+    public ResponseEntity<Void> deletarCliente(@PathVariable String cpf) {
         service.deletarCliente(cpf);
         return ResponseEntity.noContent().build();
-        }
     }
+}

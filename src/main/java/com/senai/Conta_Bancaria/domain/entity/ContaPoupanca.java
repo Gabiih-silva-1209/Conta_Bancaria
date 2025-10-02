@@ -11,13 +11,14 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import java.math.BigDecimal;
 
-@Data
 @Entity
+@Data
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 @NoArgsConstructor
 @DiscriminatorValue("POUPANCA")
-public class ContaPoupanca extends Conta {
+public class ContaPoupanca extends Conta{
+
     @Column(precision = 19, scale = 4)
     private BigDecimal rendimento;
 
