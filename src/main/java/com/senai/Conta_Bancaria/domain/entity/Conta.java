@@ -57,7 +57,7 @@ public abstract class Conta {
             saldo = saldo.subtract(valor);
     }
 
-    private static void validarValorMaiorQueZero(BigDecimal valor) {
+    protected static void validarValorMaiorQueZero(BigDecimal valor) {
         if(valor.compareTo(BigDecimal.ZERO) <= 0){
             throw new IllegalArgumentException("O valor de saque deve ser positivo.");
         }
@@ -67,5 +67,12 @@ public abstract class Conta {
         validarValorMaiorQueZero(valor);
         saldo = saldo.add(valor);
 
+    }
+    public void transferir(BigDecimal valor, Conta contaDestino){
+        if (this.id.equals(contaDestino.getId())){
+            throw new IllegalArgumentException("Não é possível transferir para a mesma conta.");
+        }
+        this.sacar(valor);
+        contaDestino.depositar(valor);
     }
 }

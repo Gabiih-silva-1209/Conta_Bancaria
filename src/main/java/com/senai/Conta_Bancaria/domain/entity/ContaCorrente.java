@@ -34,13 +34,13 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void sacar(BigDecimal valor){
-        if (valor.compareTo(BigDecimal.ZERO)<0)
-            throw new IllegalArgumentException("Valor inválido para saque");
-        BigDecimal custoSaque = valor.multiply(taxa); //multiply é multiplicado
-        BigDecimal totalSaque = valor.add(custoSaque);
-        if(getSaldo().add(limite).compareTo(totalSaque)<0)
-            throw new IllegalArgumentException("Saldo insuficiente para saque");
+        validarValorMaiorQueZero(valor);
 
-        setSaldo(getSaldo().subtract(totalSaque));
+        BigDecimal custoSaque = valor.multiply(taxa);
+        BigDecimal totalSaque = valor.add(custoSaque);
+if (this.getSaldo().add(this.limite).compareTo(totalSaque)<0){
+    throw new IllegalArgumentException("Saldo insuficiente para saque" );
+}
+        setSaldo(this.getSaldo().subtract(totalSaque));
 }
         }
