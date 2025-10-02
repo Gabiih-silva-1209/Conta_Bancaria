@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE) // criação de tabelas
 @DiscriminatorColumn(name = "tipo_conta", discriminatorType = DiscriminatorType.STRING, length = 20)
 @Table(name = "conta", uniqueConstraints = {
-        @UniqueConstraint(name = "uk_conta_numero", columnNames = "numero_da_conta"),
+        @UniqueConstraint(name = "uk_conta_numero", columnNames = "numero"),
         @UniqueConstraint(name = "uk_cliente_tipo", columnNames = {"cliente_id", "tipo_conta"})
 })
 public abstract class Conta {
@@ -36,7 +36,7 @@ public abstract class Conta {
     @Column(nullable = false, length = 20)
     private String numero;
 
-    @Column(nullable = false, precision = 4)
+    @Column(nullable = false, precision = 19, scale = 2)
     private BigDecimal saldo;
 
 

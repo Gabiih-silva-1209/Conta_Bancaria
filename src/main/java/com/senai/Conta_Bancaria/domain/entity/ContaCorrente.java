@@ -21,10 +21,10 @@ import java.math.BigDecimal;
 
 public class ContaCorrente extends Conta {
 
-    @Column(precision = 4) // quantidade de dígitos
+    @Column(precision = 19, scale= 2) // quantidade de dígitos
     private BigDecimal limite;
 
-    @Column(precision = 5)
+    @Column(precision = 19, scale= 2) // presecion: quantidade de dígitos e scale: quantidade de números ápos a vírgula
     private BigDecimal taxa;
 
     @Override

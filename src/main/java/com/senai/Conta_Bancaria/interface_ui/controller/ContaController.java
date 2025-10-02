@@ -2,6 +2,7 @@ package com.senai.Conta_Bancaria.interface_ui.controller;
 
 import com.senai.Conta_Bancaria.application.dto.ContaAtualizacaoDTO;
 import com.senai.Conta_Bancaria.application.dto.ContaResumoDTO;
+import com.senai.Conta_Bancaria.application.dto.TransferenciaDTO;
 import com.senai.Conta_Bancaria.application.dto.ValorSaqueDepositoDTO;
 import com.senai.Conta_Bancaria.application.service.ContaService;
 import jakarta.transaction.Transactional;
@@ -39,19 +40,21 @@ public class ContaController {
             return ResponseEntity.noContent().build(); //contrução de um corpo vazio
         }
 
-        @PutMapping("/{numeroDaConta}/sacar") //criação de um novo caminho
+        @PostMapping("/{numeroDaConta}/sacar") //criação de um novo caminho
     public ResponseEntity<ContaResumoDTO> sacar (@PathVariable String numeroDaConta,
                                                  @RequestBody ValorSaqueDepositoDTO dto){
         return ResponseEntity.ok(service.sacar(numeroDaConta, dto));
         }
 
-        @PutMapping("/{numeroDaConta}/depositar")
+        @PostMapping("/{numeroDaConta}/depositar")
     public ResponseEntity<ContaResumoDTO> depositar(@PathVariable String numeroDaConta,
                                                     @RequestBody ValorSaqueDepositoDTO dto){
         return ResponseEntity.ok(service.depositar(numeroDaConta,dto));
         }
 
-        @PutMapping("/{numeroDaConta}/transferir")
-    public ResponseEntity<Void> transferir(@PathVariable String numeroDaConta,
-                                           @RequestParam String contaDestino,
+        @PostMapping("/{numeroDaConta}/transferir")
+    public ResponseEntity<ContaResumoDTO> transferir(@PathVariable String numeroDaConta,
+                                           @RequestBody TransferenciaDTO dto){
+        return  ResponseEntity.ok(service.transferir(numeroDaConta, dto));
+        }
     }
