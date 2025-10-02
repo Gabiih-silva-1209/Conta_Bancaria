@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("CORRENTE")
-
 public class ContaCorrente extends Conta {
 
     @Column(precision = 19, scale= 2) // quantidade de dígitos

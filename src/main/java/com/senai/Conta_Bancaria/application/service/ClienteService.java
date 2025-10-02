@@ -23,8 +23,9 @@ public class ClienteService {
                 () -> repository.save(dto.toEntity())
         );
         var contas = cliente.getContas();
+        System.out.println(dto);
         var novaConta = dto.contaDTO().toEntity(cliente);
-
+        System.out.println(novaConta);
         boolean jaTemTipo = contas.stream().anyMatch(
                 c -> c.getClass().equals(novaConta.getClass()) && c.isAtiva()
                 );
