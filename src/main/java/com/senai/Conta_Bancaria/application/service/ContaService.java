@@ -7,6 +7,8 @@ import com.senai.Conta_Bancaria.application.dto.ValorSaqueDepositoDTO;
 import com.senai.Conta_Bancaria.domain.entity.Conta;
 import com.senai.Conta_Bancaria.domain.entity.ContaCorrente;
 import com.senai.Conta_Bancaria.domain.entity.ContaPoupanca;
+import com.senai.Conta_Bancaria.domain.exception.EntidadeNaoEncontradaException;
+import com.senai.Conta_Bancaria.domain.exception.TipoDeContaInvalidaException;
 import com.senai.Conta_Bancaria.domain.repository.ContaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -47,7 +49,7 @@ public class ContaService {
             corrente.setLimite(dto.limite());
             corrente.setTaxa(dto.taxa());
         } else {
-            throw new RuntimeException("Tipo de conta inválido");
+            throw new TipoDeContaInvalidaException("");
         }
 
         conta.setSaldo(dto.saldo());
@@ -57,8 +59,7 @@ public class ContaService {
     }
 
     public void deletarConta(String numeroDaConta) {
-        Conta conta = repository.findByNumeroAndAtivaTrue(numeroDaConta)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+        Conta conta = buscarContaAtivaPorNumero(numeroDaConta);
         conta.setAtiva(false);
         repository.save(conta);
 
@@ -92,6 +93,6 @@ public class ContaService {
 
     private Conta buscarContaAtivaPorNumero(String numero) {
         return repository.findByNumeroAndAtivaTrue(numero)
-                .orElseThrow(() -> new RuntimeException("Conta não encontrada"));
+                .orElseThrow(() -> new EntidadeNaoEncontradaException("conta"));
     }
 }

@@ -1,8 +1,9 @@
 package com.senai.Conta_Bancaria.domain.exception;
 
 public class SaldoInsuficienteException extends RuntimeException {
-    public SaldoInsuficienteException(String message) {
+    public SaldoInsuficienteException(String operacao) {
 
-        super(message);
+
+        super("Saldo insuficiente para realizar a operação de " + operacao);
     }
 }

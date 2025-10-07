@@ -3,6 +3,7 @@ package com.senai.Conta_Bancaria.application.service;
 import com.senai.Conta_Bancaria.application.dto.ClienteAtualizadoDTO;
 import com.senai.Conta_Bancaria.application.dto.ClienteRegistroDTO;
 import com.senai.Conta_Bancaria.application.dto.ClienteResponseDTO;
+import com.senai.Conta_Bancaria.domain.entity.Cliente;
 import com.senai.Conta_Bancaria.domain.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -43,18 +44,21 @@ public class ClienteService {
     }
 
     public ClienteResponseDTO buscarClienteAtivoPorCpf(String cpf) {
-        var cliente = repository.findByCpfAndAtivoTrue(cpf).orElseThrow(
-                () -> new RuntimeException("Cliente não encontrado.")
-        );
+        var cliente = buscarClientePorCpfEAtivo(cpf, "Cliente não encontrado.");
         return ClienteResponseDTO.fromEntity(cliente);
     }
 
-    public ClienteResponseDTO atualizarCliente(String cpf, ClienteAtualizadoDTO dto) {
-var cliente = repository.findByCpfAndAtivoTrue(cpf).orElseThrow(
-        () -> new RuntimeException("Cliente não encontrado")
-);
+    private Cliente buscarClientePorCpfEAtivo(String cpf, String message) {
+        var cliente = repository.findByCpfAndAtivoTrue(cpf).orElseThrow(
+                () -> new RuntimeException(message)
+        );
+        return cliente;
+    }
 
- cliente.setNome(dto.nome());
+    public ClienteResponseDTO atualizarCliente(String cpf, ClienteAtualizadoDTO dto) {
+        var cliente = buscarClientePorCpfEAtivo(cpf, "Cliente não encontrado");
+
+        cliente.setNome(dto.nome());
  cliente.setCpf(dto.cpf());
 
  return ClienteResponseDTO.fromEntity(repository.save(cliente));
@@ -62,9 +66,7 @@ var cliente = repository.findByCpfAndAtivoTrue(cpf).orElseThrow(
 
 
     public void deletarCliente(String cpf) {
-        var cliente = repository.findByCpfAndAtivoTrue(cpf).orElseThrow(
-                () -> new RuntimeException("Cliente não encontrado")
-        );
+        var cliente = buscarClientePorCpfEAtivo(cpf, "Cliente não encontrado");
         cliente.setAtivo(false);
         cliente.getContas().forEach(
                 conta ->conta.setAtiva(false)
