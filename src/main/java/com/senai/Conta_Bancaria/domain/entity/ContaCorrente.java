@@ -1,5 +1,6 @@
 package com.senai.Conta_Bancaria.domain.entity;
 
+import com.senai.Conta_Bancaria.domain.exception.SaldoInsuficienteException;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -33,12 +34,13 @@ public class ContaCorrente extends Conta {
 
     @Override
     public void sacar(BigDecimal valor){
-        validarValorMaiorQueZero(valor);
+        validarValorMaiorQueZero(valor, "saque");
 
         BigDecimal custoSaque = valor.multiply(taxa);
         BigDecimal totalSaque = valor.add(custoSaque);
-if (this.getSaldo().add(this.limite).compareTo(totalSaque)<0){
-    throw new IllegalArgumentException("Saldo insuficiente para saque" );
+
+        if (totalSaque.compareTo(this.getSaldo().add(this.limite)) > 0) {
+            throw new SaldoInsuficienteException("saque");
 }
         setSaldo(this.getSaldo().subtract(totalSaque));
 }

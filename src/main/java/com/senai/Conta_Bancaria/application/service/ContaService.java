@@ -8,6 +8,7 @@ import com.senai.Conta_Bancaria.domain.entity.Conta;
 import com.senai.Conta_Bancaria.domain.entity.ContaCorrente;
 import com.senai.Conta_Bancaria.domain.entity.ContaPoupanca;
 import com.senai.Conta_Bancaria.domain.exception.EntidadeNaoEncontradaException;
+import com.senai.Conta_Bancaria.domain.exception.RendimentoInvalidoException;
 import com.senai.Conta_Bancaria.domain.exception.TipoDeContaInvalidaException;
 import com.senai.Conta_Bancaria.domain.repository.ContaRepository;
 import lombok.RequiredArgsConstructor;
@@ -95,4 +96,13 @@ public class ContaService {
         return repository.findByNumeroAndAtivaTrue(numero)
                 .orElseThrow(() -> new EntidadeNaoEncontradaException("conta"));
     }
-}
+
+    public ContaResumoDTO aplicarRendimento(String numeroDaConta) {
+        Conta conta = buscarContaAtivaPorNumero(numeroDaConta);
+        if (conta instanceof ContaPoupanca poupanca) {
+            poupanca.aplicarRendimento();
+            return ContaResumoDTO.fromEntity(repository.save(poupanca));
+        }
+            throw new RendimentoInvalidoException();
+        }
+    }
