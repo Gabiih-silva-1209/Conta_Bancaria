@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 public record ContaResumoDTO(
         @Size(min = 5, max = 20, message = "O número da conta deve ter entre 5 e 20 caracteres")
         String numero,
-        @NotBlank(message = "O tipo da conta não pode estar vazio")
+        @NotNull(message = "O tipo da conta não pode estar vazio")
         String tipo,
         @NotNull(message = "O saldo não pode ser nulo")
         @Positive(message = "O saldo deve ser positivo")

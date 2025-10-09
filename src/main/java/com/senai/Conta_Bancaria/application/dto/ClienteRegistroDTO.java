@@ -2,6 +2,7 @@ package com.senai.Conta_Bancaria.application.dto;
 
 import com.senai.Conta_Bancaria.domain.entity.Cliente;
 import com.senai.Conta_Bancaria.domain.entity.Conta;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -16,6 +17,7 @@ public record ClienteRegistroDTO(
         @NotBlank(message = "O cpf não pode estar vazio")
         @Size(min = 11, max = 11, message = "O cpf deve ter 11 caracteres")
         String cpf,
+        @Valid
         @NotNull(message = "O saldo não pode ser nulo")
         @Positive(message = "O saldo deve ser positivo")
         ContaResumoDTO contaDTO) {

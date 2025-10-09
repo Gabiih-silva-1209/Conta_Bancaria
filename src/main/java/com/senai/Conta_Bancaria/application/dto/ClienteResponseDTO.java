@@ -1,6 +1,7 @@
 package com.senai.Conta_Bancaria.application.dto;
 
 import com.senai.Conta_Bancaria.domain.entity.Cliente;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
@@ -18,6 +19,7 @@ public record ClienteResponseDTO(
         @Size(min = 11, max = 11, message = "O cpf deve ter 11 caracteres")
         @Pattern(regexp = "\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}", message = "O CPF deve ter o formato XXX.XXX.XXX-XX")
         String cpf,
+        @Valid
         @NotNull(message = "A lista de contas não pode ser nula")
         List<ContaResumoDTO> contas
 ){
