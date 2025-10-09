@@ -5,12 +5,20 @@ import com.senai.Conta_Bancaria.domain.entity.Conta;
 import com.senai.Conta_Bancaria.domain.entity.ContaCorrente;
 import com.senai.Conta_Bancaria.domain.entity.ContaPoupanca;
 import com.senai.Conta_Bancaria.domain.exception.TipoDeContaInvalidaException;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 
 import java.math.BigDecimal;
 
 public record ContaResumoDTO(
+        @Size(min = 5, max = 20, message = "O número da conta deve ter entre 5 e 20 caracteres")
         String numero,
+        @NotBlank(message = "O tipo da conta não pode estar vazio")
         String tipo,
+        @NotNull(message = "O saldo não pode ser nulo")
+        @Positive(message = "O saldo deve ser positivo")
         BigDecimal saldo
 ) {
 
