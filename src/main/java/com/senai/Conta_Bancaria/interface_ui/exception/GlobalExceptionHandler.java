@@ -13,6 +13,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleValoresNegativos(ValoresNegativosException ex) {
         return new ResponseEntity <>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
+
     @ExceptionHandler(ContaMesmoTipoException.class)
     public ResponseEntity<String> handleContaMesmoTipo(ContaMesmoTipoException ex) {
         return new ResponseEntity <>(ex.getMessage(), HttpStatus.CONFLICT);

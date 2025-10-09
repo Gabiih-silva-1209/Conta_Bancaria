@@ -68,7 +68,7 @@ public abstract class Conta {
     }
 
     public void depositar(BigDecimal valor) {
-        validarValorMaiorQueZero("valor");
+        validarValorMaiorQueZero(valor, "valor");
         saldo = saldo.add(valor);
 
     }
