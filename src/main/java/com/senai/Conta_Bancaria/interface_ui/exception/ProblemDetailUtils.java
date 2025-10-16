@@ -5,7 +5,7 @@ import org.springframework.http.ProblemDetail;
 
 import java.net.URI;
 
-public class ProblemaDetailUtils {
+public class ProblemDetailUtils {
     public static ProblemDetail buildProblem(HttpStatus status, String title, String detail, String path) {
         ProblemDetail problem = ProblemDetail.forStatus(status);
         problem.setTitle(title);
