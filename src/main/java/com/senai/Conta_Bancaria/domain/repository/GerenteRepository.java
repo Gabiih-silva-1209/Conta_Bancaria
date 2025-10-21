@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface GerenteRepository extends JpaRepository<Gerente, String> {
-    Optional<Gerente> findByCpfAndAtivoTrue(String cpf);
+    Optional<Gerente> findByEmail(String Email);
 
     List<Gerente> findAllByAtivoTrue();
 }

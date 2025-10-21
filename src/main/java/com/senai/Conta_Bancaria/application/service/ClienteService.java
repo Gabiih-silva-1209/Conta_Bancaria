@@ -6,6 +6,7 @@ import com.senai.Conta_Bancaria.application.dto.ClienteResponseDTO;
 import com.senai.Conta_Bancaria.domain.entity.Cliente;
 import com.senai.Conta_Bancaria.domain.repository.ClienteRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 public class ClienteService {
 
     private final ClienteRepository repository;
+    private final PasswordEncoder passwordEncoder;
 
 
     public ClienteResponseDTO registrarCliente(ClienteRegistroDTO dto){
@@ -33,6 +35,7 @@ public class ClienteService {
                 if (jaTemTipo)
                     throw  new RuntimeException("Cliente já possui uma conta desse tipo");
         cliente.getContas().add(novaConta);
+        cliente.setSenha(passwordEncoder.encode(dto.senha()));
 
         return ClienteResponseDTO.fromEntity(repository.save(cliente));
     }
