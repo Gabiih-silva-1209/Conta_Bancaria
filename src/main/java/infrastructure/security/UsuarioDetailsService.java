@@ -21,6 +21,10 @@ public class UsuarioDetailsService implements UserDetailsService {
         var usuario = repository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException("Usuário não encontrado"));
 
+        if (usuario.getRole() == null) {
+            throw new UsernameNotFoundException("Role do usuário não encontrado");
+        }
+
         return new User(
                 usuario.getEmail(),
                 usuario.getSenha(),
