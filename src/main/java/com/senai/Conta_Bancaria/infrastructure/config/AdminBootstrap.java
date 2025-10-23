@@ -16,6 +16,7 @@ public class AdminBootstrap implements CommandLineRunner {
 
     private final GerenteRepository gerenteRepository;
     private final PasswordEncoder passwordEncoder;
+//esqueci minha conta sou boba
 
     @Value("${sistema.admin.email}")
     private String adminEmail;

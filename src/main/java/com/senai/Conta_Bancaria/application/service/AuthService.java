@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class AuthService {
+//esqueci minha conta sou boba
 
     private final UsuarioRepository usuarios;
     private final PasswordEncoder encoder;

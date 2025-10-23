@@ -26,6 +26,7 @@ public record ClienteRegistroDTO(
         @NotBlank(message = "O email não pode estar vazio")
         @Size(max = 100, message = "O email deve ter no máximo 100 caracteres")
         String email,
+//esqueci minha conta sou boba
 
         @Valid
         @NotNull(message = "O saldo não pode ser nulo")

@@ -15,6 +15,7 @@ import java.util.List;
 public class UsuarioDetailsService implements UserDetailsService {
 
     private final UsuarioRepository repository;
+//esqueci minha conta sou boba
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {

@@ -5,3 +5,4 @@ public class ValoresNegativosException extends RuntimeException {
         String message = "Não é possível realizar a operação de " + operacao + " com valores negativos.";
     }
 }
+//esqueci minha conta sou boba

@@ -33,6 +33,7 @@ public class ClienteController {
     public ResponseEntity<List<ClienteResponseDTO>> listarClientesAtivos(){
         return ResponseEntity.ok(service.listarClientesAtivos());
     }
+//esqueci minha conta sou boba
 
     @GetMapping("/cpf/{cpf}")
     public ResponseEntity<ClienteResponseDTO> buscarClienteAtivoPorCpf(@PathVariable String cpf){

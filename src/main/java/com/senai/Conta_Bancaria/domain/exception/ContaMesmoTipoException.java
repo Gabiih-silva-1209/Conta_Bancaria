@@ -5,3 +5,4 @@ public class ContaMesmoTipoException extends RuntimeException {
         super("O cliente já possui uma conta deste tipo.");
     }
 }
+//esqueci minha conta sou boba

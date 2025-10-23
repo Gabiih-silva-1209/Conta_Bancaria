@@ -22,6 +22,7 @@ import java.util.List;
 
 public class Cliente extends Usuario {
 
+//esqueci minha conta sou boba
 
     @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)  // Relação no banco de dados de um para muitos - 1 cliente N: contas (um cliente pode ter muitas contas)
     private List<Conta> contas; // criação da lista de conta

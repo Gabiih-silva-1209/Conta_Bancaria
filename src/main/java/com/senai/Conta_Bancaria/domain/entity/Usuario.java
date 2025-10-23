@@ -18,6 +18,8 @@ import com.senai.Conta_Bancaria.domain.enums.Role;
 @Entity
 @SuperBuilder
 @NoArgsConstructor
+//esqueci minha conta sou boba
+
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "usuario",
         uniqueConstraints = {
