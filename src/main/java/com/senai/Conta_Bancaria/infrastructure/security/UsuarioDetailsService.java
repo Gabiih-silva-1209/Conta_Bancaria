@@ -1,4 +1,4 @@
-package infrastructure.security;
+package com.senai.Conta_Bancaria.infrastructure.security;
 import com.senai.Conta_Bancaria.domain.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,4 +1,4 @@
-package infrastructure.security;
+package com.senai.Conta_Bancaria.infrastructure.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

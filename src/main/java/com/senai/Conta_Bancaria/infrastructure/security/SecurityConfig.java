@@ -1,4 +1,4 @@
-package infrastructure.security;
+package com.senai.Conta_Bancaria.infrastructure.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +19,11 @@ public class SecurityConfig {
     private final UsuarioDetailsService usuarioDetailsService;
     private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
+
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(
@@ -28,6 +33,9 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.POST, "/gerentes").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/gerentes").hasAnyRole("ADMIN","GERENTE")
+                        .requestMatchers(HttpMethod.GET, "/clientes").hasAnyRole("ADMIN","GERENTE")
+                        .requestMatchers(HttpMethod.POST, "/clientes").hasAnyRole("ADMIN","GERENTE")
+                        .requestMatchers(HttpMethod.PUT, "/clientes").hasAnyRole("ADMIN","GERENTE") //
 
                         .anyRequest().authenticated()
                 )
@@ -37,11 +45,6 @@ public class SecurityConfig {
         return http.build();
     }
 
-
-    @Bean
-    public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Bean
     public AuthenticationManager authManager(AuthenticationConfiguration config) throws Exception {

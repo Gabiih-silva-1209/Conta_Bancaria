@@ -3,33 +3,39 @@ package com.senai.Conta_Bancaria.domain.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-import javax.management.relation.Role;
+import com.senai.Conta_Bancaria.domain.enums.Role;
 
 @Getter
 @Setter
 @Entity
 @SuperBuilder
 @NoArgsConstructor
-@AllArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "usuario",
+        uniqueConstraints = {
+                @UniqueConstraint( columnNames = "cpf") } )  //Construção de tabelas com alteração de novo
 public abstract class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     protected String id;
 
-    @NotBlank
-    @Column(nullable = false)
-    protected String nome;
+    @NotBlank(message = "O nome do cliente não pode estar vazio")
+    @Size(min=3, max = 120, message = "O nome deve ter entre 3 à 100 caracteres")
+    @Column(nullable = false, length = 120)
+    private String nome;
 
-    @NotBlank
-    @Column(nullable = false, unique = true, length = 14)
-    protected String cpf; // formato "000.000.000-00" (validação pode ser ampliada)
+    @NotNull(message = "CPF obrigatório")
+    @Size(max = 11, message = "O número do CPF deve conter 11 dígitos")
+    @Column(nullable = false, length = 11)
+    private String cpf;
 
     @Email
     @NotBlank

@@ -1,4 +1,4 @@
-package infrastructure.config;
+package com.senai.Conta_Bancaria.infrastructure.config;
 
 import com.senai.Conta_Bancaria.domain.entity.Gerente;
 import com.senai.Conta_Bancaria.domain.repository.GerenteRepository;
@@ -36,9 +36,10 @@ public class AdminBootstrap implements CommandLineRunner {
                     Gerente admin = Gerente.builder()
                             .nome("Cadastro Provisório")
                             .email(adminEmail)
-                            .cpf("000.000.000-00")
+                            .cpf("00000000000")
                             .senha(passwordEncoder.encode(adminSenha))
-                            .role(Role.Admin)
+                            .role(Role.ADMIN)
+                            .ativo(true)
                             .build();
                     gerenteRepository.save(admin);
                     System.out.println("⚡ Usuário admin provisório criado: " + adminEmail);
