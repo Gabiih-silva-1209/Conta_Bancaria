@@ -33,11 +33,14 @@ public class SecurityConfig {
 
                         .requestMatchers(HttpMethod.POST, "/gerentes").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/gerentes").hasAnyRole("ADMIN","GERENTE")
-                        .requestMatchers(HttpMethod.GET, "/clientes").hasAnyRole("ADMIN","GERENTE")
-                        .requestMatchers(HttpMethod.POST, "/clientes").hasAnyRole("ADMIN","GERENTE")
-                        .requestMatchers(HttpMethod.PUT, "/clientes").hasAnyRole("ADMIN","GERENTE") ///
+                        .requestMatchers(HttpMethod.PUT, "/gerentes").hasAnyRole("ADMIN", "GERENTE")
+                        .requestMatchers(HttpMethod.DELETE, "/gerentes").hasAnyRole("ADMIN", "GERENTE")
+                        //Cliente
+                        .requestMatchers(HttpMethod.GET, "/cliente").hasAnyRole("ADMIN","GERENTE")
+                        .requestMatchers(HttpMethod.POST, "/cliente").hasAnyRole("ADMIN","GERENTE")
+                        .requestMatchers(HttpMethod.PUT, "/cliente").hasAnyRole("ADMIN","GERENTE")
+                        .requestMatchers(HttpMethod.DELETE,"/cliente").hasAnyRole("ADMIN", "GERENTE")
 
-                        .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .userDetailsService(usuarioDetailsService);
