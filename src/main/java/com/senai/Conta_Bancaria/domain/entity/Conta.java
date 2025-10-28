@@ -30,7 +30,7 @@ import java.math.BigDecimal;
         @UniqueConstraint(name = "uk_cliente_tipo", columnNames = {"cliente_id", "tipo_conta"})
 })
 public abstract class Conta {
-//esqueci minha conta sou boba
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

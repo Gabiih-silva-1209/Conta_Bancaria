@@ -32,7 +32,6 @@ public class ContaService {
                 .filter(Conta::isAtiva)
                 .map(ContaResumoDTO::fromEntity).toList();
     }
-//esqueci minha conta sou boba
 
     @Transactional(readOnly = true)
     public ContaResumoDTO buscarContaPorNumero(String numero) {

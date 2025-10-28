@@ -17,7 +17,7 @@ import java.io.IOException;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-//esqueci minha conta sou boba
+
 
     private final JwtService jwtService;
     private final UsuarioDetailsService userDetailsService;

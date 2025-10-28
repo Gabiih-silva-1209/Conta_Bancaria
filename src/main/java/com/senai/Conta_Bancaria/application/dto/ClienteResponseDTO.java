@@ -22,7 +22,7 @@ public record ClienteResponseDTO(
         @Valid
         @NotNull(message = "A lista de contas não pode ser nula")
         List<ContaResumoDTO> contas
-){//esqueci minha conta sou boba
+){
 
         public static ClienteResponseDTO fromEntity(Cliente cliente) {
                 List<ContaResumoDTO> contas = cliente.getContas().stream().map(ContaResumoDTO::fromEntity).toList();

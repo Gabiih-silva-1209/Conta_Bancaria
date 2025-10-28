@@ -5,4 +5,4 @@ public class TipoDeContaInvalidaException extends RuntimeException {
         super("Tipo de conta inválida." + tipo+ "Os tipos válidos são: 'CORRENTE' ou 'POUPANCA'.");
     }
 }
-//esqueci minha conta sou boba
+

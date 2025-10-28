@@ -23,7 +23,7 @@ public class JwtService {
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
         this.expirationSeconds = expirationSeconds;
     }
-//esqueci minha conta sou boba
+
 
     public String generateToken(String email, String role) {
         Instant now = Instant.now();

@@ -13,5 +13,8 @@ public record ClienteAtualizadoDTO(
     @NotBlank(message = "O CPF não pode estar vazio")
     @Size(min = 11, max = 11, message = "O CPF deve ter 11 caracteres")
     String cpf
-)
+
+) {
+}
+
 

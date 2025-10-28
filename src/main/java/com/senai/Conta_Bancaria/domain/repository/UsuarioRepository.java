@@ -12,4 +12,4 @@ public interface UsuarioRepository  extends JpaRepository<Usuario, String> {
     List<Usuario> findAllByAtivoTrue();
 }
 
-//esqueci minha conta sou boba
+

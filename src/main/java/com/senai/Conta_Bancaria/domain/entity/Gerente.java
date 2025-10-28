@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Table(name = "gerentes")
 public class Gerente extends Usuario {
-//esqueci minha conta sou boba
+
 
 
 }

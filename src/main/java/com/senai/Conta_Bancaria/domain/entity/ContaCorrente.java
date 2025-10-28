@@ -20,7 +20,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @DiscriminatorValue("CORRENTE")
 public class ContaCorrente extends Conta {
-    //esqueci minha conta sou boba
+
     @Column(precision = 19, scale= 2) // quantidade de dígitos
     private BigDecimal limite;
 

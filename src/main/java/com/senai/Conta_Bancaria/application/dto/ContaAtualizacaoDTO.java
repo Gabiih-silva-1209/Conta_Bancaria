@@ -15,7 +15,7 @@ public record ContaAtualizacaoDTO(
         @NotNull(message = "O limite não pode ser nulo")
         @Positive(message = "O limite deve ser um valor positivo")
         BigDecimal limite,
-//esqueci minha conta sou boba
+
 
         @NotNull(message = "O rendimento não pode ser nulo")
         @Positive(message = "O rendimento deve ser um valor positivo")

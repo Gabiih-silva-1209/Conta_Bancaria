@@ -15,7 +15,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class ClienteService {
-//esqueci minha conta sou boba
+
 
     private final ClienteRepository repository;
     private final PasswordEncoder passwordEncoder;

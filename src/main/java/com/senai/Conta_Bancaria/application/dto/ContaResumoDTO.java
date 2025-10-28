@@ -21,7 +21,7 @@ public record ContaResumoDTO(
         @Positive(message = "O saldo deve ser positivo")
         BigDecimal saldo
 ) {
-//esqueci minha conta sou boba
+
 
     public Conta toEntity(Cliente cliente) {
         if ("CORRENTE".equalsIgnoreCase(tipo)) {
