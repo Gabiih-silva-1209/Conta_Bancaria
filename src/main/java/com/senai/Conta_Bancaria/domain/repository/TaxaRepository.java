@@ -1,4 +1,7 @@
 package com.senai.Conta_Bancaria.domain.repository;
 
-public interface TaxaRepository {
+import com.senai.Conta_Bancaria.domain.entity.Taxa;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface TaxaRepository extends JpaRepository <Taxa, Long> {
 }
