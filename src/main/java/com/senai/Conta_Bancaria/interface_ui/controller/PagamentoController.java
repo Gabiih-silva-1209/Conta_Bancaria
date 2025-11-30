@@ -1,5 +1,7 @@
 package com.senai.Conta_Bancaria.interface_ui.controller;
 
+import com.senai.Conta_Bancaria.application.dto.PagamentoResponseDTO;
+import com.senai.Conta_Bancaria.application.dto.PagamentoResquestDTO;
 import com.senai.Conta_Bancaria.application.service.PagamentoService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +20,8 @@ public class PagamentoController {
     }
 
     @PostMapping
-    public ResponseEntity<PagamentoResponseDTO> pagar(@RequestBody PagamentoRequestDTO dto) {
-        // aqui você converte dto em chamada service (carregar taxas pelos ids etc.)
-        // exemplo simplificado:
-        // Pagamento p = service.realizarPagamento(dto.getContaId(), dto.getBoleto(), dto.getValor(), taxasSet);
-        // PagamentoResponseDTO resp = converter(p);
+    public ResponseEntity<PagamentoResponseDTO> pagar(@RequestBody PagamentoResquestDTO dto) {
+
         return ResponseEntity.ok(/*resp*/ null);
     }
 }
